@@ -12,9 +12,8 @@ const app = express()
 
 // log handler
 const ENV = process.env.NODE_ENV
-if (ENV !== 'production') {
-  app.use(logger('dev'))
-} else {
+if (ENV === 'test') {
+} else if (ENV === 'production') {
   const logDir = path.join(__dirname, 'logs')
   fs.existsSync(logDir) || fs.mkdirSync(logDir)
 
@@ -29,6 +28,8 @@ if (ENV !== 'production') {
       stream: accessLogStream
     })
   )
+} else {
+  app.use(logger('dev'))
 }
 
 app.use(express.json())

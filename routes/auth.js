@@ -3,7 +3,7 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 const tokenConfig = require('../config/token')
 
-router.get('/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   const payload = {
     info: { nickname: '硕硕' }
   }
