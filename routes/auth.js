@@ -4,7 +4,9 @@ const jwt = require('jsonwebtoken')
 const tokenConfig = require('../config/token')
 
 router.get('/login', (req, res, next) => {
-  const payload = { nickname: '硕硕' }
+  const payload = {
+    info: { nickname: '硕硕' }
+  }
 
   const token = jwt.sign(payload, tokenConfig.secret, {
     expiresIn: tokenConfig.expiresIn

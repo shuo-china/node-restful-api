@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.send('index')
+router.get('/getUserInfo', (req, res, next) => {
+  res.json(req.auth.info)
 })
 
 module.exports = router

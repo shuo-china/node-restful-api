@@ -6,6 +6,7 @@ const FileStreamRotator = require('file-stream-rotator')
 const fs = require('fs')
 const { expressjwt: jwt } = require('express-jwt')
 const tokenConfig = require('./config/token')
+const whiteList = require('./config/whiteList')
 
 const app = express()
 
@@ -41,19 +42,23 @@ app.use(
     secret: tokenConfig.secret,
     algorithms: ['HS256']
   }).unless({
-    path: ['/auth']
+    path: whiteList
   })
 )
 
-const indexRouter = require('./routes/index')
+// router
+const userRouter = require('./routes/user')
 const authRouter = require('./routes/auth')
 
-app.use('/', indexRouter)
+app.use('/user', userRouter)
 app.use('/auth', authRouter)
 
 // 404
 app.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!")
+  res.status(404).json({
+    code: 'NOT_FOUND',
+    message: 'Interface address does not exist'
+  })
 })
 
 // error handler
@@ -66,7 +71,10 @@ app.use(function (err, req, res, next) {
     return
   }
 
-  res.status(500).send('Something broke!')
+  res.status(500).json({
+    code: 'SERVER_ERROR',
+    message: err.message
+  })
 })
 
 module.exports = app
