@@ -1,20 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const jwt = require('jsonwebtoken')
+const { createToken } = require('../utils/token')
 const tokenConfig = require('../config/token')
+const { loginValidate } = require('../validate/auth')
 
-router.post('/login', (req, res, next) => {
-  const payload = {
-    info: { nickname: '硕硕' }
-  }
-
-  const token = jwt.sign(payload, tokenConfig.secret, {
-    expiresIn: tokenConfig.expiresIn
-  })
+router.post('/login', loginValidate, (req, res, next) => {
+  const info = { nickname: '硕硕' }
 
   res.status(201).json({
     token_type: 'Bearer',
-    access_token: token,
+    access_token: createToken(info),
     expires_in: tokenConfig.expiresIn
   })
 })

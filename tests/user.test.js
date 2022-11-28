@@ -1,7 +1,12 @@
-const { request } = require('./request.js')
+const request = require('./request.js')
 
-it('/user/getUserInfo', () => {
-  return request.get('/user/getUserInfos').then(res => {
-    expect(res.status).toBe(200)
+describe('user', () => {
+  it('getUserInfo', () => {
+    return request
+      .get('/user/getUserInfo')
+      .setToken()
+      .then(res => {
+        expect(res.status).toBe(200)
+      })
   })
 })
