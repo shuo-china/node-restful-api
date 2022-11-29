@@ -1,24 +1,26 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
+const config = require('../config/db')
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'bdf'
-})
+const pool = mysql.createPool(config.mysql)
 
 function exec(...args) {
   return new Promise((resolve, reject) => {
-    connection.connect()
-
-    connection.query(...args, (err, results) => {
+    pool.getConnection(function (err, connection) {
       if (err) {
-        throw new Error('123')
+        reject(err)
+        return
       }
-      resolve(results)
-    })
 
-    connection.end()
+      connection.query(...args, function (error, results, fields) {
+        connection.release()
+        if (error) {
+          reject(error)
+          return
+        }
+
+        resolve(results)
+      })
+    })
   })
 }
 

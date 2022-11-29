@@ -1,4 +1,5 @@
 const express = require('express')
+require('express-async-errors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('./middlewares/logger')
