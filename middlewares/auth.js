@@ -1,7 +1,7 @@
 const { expressjwt: jwt } = require('express-jwt')
-const tokenConfig = require('../config/token')
-const whiteList = require('../config/whiteList')
-const { parseToken } = require('../utils/token')
+const tokenConfig = require('@config/token')
+const whiteList = require('@config/whiteList')
+const { parseToken } = require('@utils/token')
 
 function auth() {
   return [

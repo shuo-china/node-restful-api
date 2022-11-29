@@ -1,8 +1,9 @@
 const mysql = {
   host: 'localhost',
-  user: 'root',
+  username: 'root',
   password: 'root',
-  database: 'bdf'
+  database: 'node',
+  prefix: 'kr'
 }
 
 module.exports = {

@@ -1,7 +1,8 @@
+// permission blocking
 const express = require('express')
 const router = express.Router()
-const { createToken } = require('../utils/token')
-const { exec } = require('../db/mysql')
+const { createToken } = require('@utils/token')
+const { exec } = require('@db/mysql')
 const { isEmpty, pick } = require('lodash')
 const md5 = require('md5')
 const { loginValidate } = require('../validate/auth')

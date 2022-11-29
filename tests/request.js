@@ -1,7 +1,7 @@
 const methods = require('methods')
 const supertest = require('supertest')
 const app = require('../app')
-const { createToken } = require('../utils/token')
+const { createToken } = require('@utils/token')
 
 const mockUserInfo = {
   nickname: 'Aaron',

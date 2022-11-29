@@ -20,9 +20,11 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
+    "module-alias": "^2.2.2",
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
-    "pm2": "^5.2.2"
+    "pm2": "^5.2.2",
+    "sequelize": "^6.25.8"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
@@ -38,5 +40,14 @@
     "nodemon": "^2.0.20",
     "prettier": "^2.8.0",
     "supertest": "^6.3.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@app": "app",
+    "@config": "config",
+    "@db": "db",
+    "@middlewares": "middlewares",
+    "@public": "public",
+    "@utils": "utils"
   }
 }

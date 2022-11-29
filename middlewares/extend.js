@@ -1,3 +1,4 @@
+// mount property
 function extend() {
   const middleware = function (req, res, next) {
     res.error = (message, code, detail) => {

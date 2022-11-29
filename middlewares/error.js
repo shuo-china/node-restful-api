@@ -1,3 +1,4 @@
+// error handler
 const { upperFirst, lowerFirst } = require('lodash')
 
 function error() {

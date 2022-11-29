@@ -1,12 +1,9 @@
+require('module-alias/register')
 const express = require('express')
 require('express-async-errors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const logger = require('./middlewares/logger')
-const error = require('./middlewares/error')
-const { auth } = require('./middlewares/auth')
-const extend = require('./middlewares/extend')
-const routeNoutFound = require('./middlewares/routeNotFound')
+const { logger, error, auth, extend, routeNotFound } = require('@middlewares')
 
 const app = express()
 
@@ -18,13 +15,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(extend())
 app.use(auth())
 
-const userRouter = require('./routes/user')
-const authRouter = require('./routes/auth')
+const userRouter = require('@app/routes/user')
+const authRouter = require('@app/routes/auth')
 
 app.use('/user', userRouter)
 app.use('/auth', authRouter)
 
-app.use(routeNoutFound())
+app.use(routeNotFound())
 app.use(error())
 
 module.exports = app

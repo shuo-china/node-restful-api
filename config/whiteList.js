@@ -1,2 +1,2 @@
 // paths unprotected
-module.exports = ['/auth/login']
+module.exports = ['/auth/login', '/user/test']

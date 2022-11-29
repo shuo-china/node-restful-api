@@ -1,3 +1,4 @@
+// 404 handler
 class RouteNotFoundError extends Error {
   name = 'RouteNotFoundError'
 }
