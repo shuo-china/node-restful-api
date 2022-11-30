@@ -92,7 +92,6 @@ module.exports = {
     '@root/(.*)': '<rootDir>/$1',
     '@app/(.*)': '<rootDir>/app/$1',
     '@config/(.*)': '<rootDir>/config/$1',
-    '@db/(.*)': '<rootDir>/db/$1',
     '@middlewares/(.*)': '<rootDir>/middlewares/$1',
     '@public/(.*)': '<rootDir>/public/$1',
     '@utils/(.*)': '<rootDir>/utils/$1'

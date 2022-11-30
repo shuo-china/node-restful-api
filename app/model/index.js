@@ -1,5 +1,5 @@
 const { mysql: config } = require('@config/db')
-const { Sequelize } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 
 const sequelize = new Sequelize(
   config.database,
@@ -23,7 +23,10 @@ const sequelize = new Sequelize(
 )
 
 sequelize.authenticate().catch(err => {
-  console.log('Unable to connect to the database:', err.message)
+  console.error('Unable to connect to the database:', err.message)
 })
 
-module.exports = sequelize
+module.exports = {
+  sequelize,
+  DataTypes
+}

@@ -3,7 +3,14 @@ const express = require('express')
 require('express-async-errors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const { logger, error, auth, extend, routeNotFound } = require('@middlewares')
+const {
+  logger,
+  error,
+  extend,
+  auth,
+  routeNotFound
+} = require('@middlewares/index')
+const setupRouter = require('@utils/setupRouter')
 
 const app = express()
 
@@ -14,12 +21,14 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(extend())
 app.use(auth())
+setupRouter(app)
 
-const userRouter = require('@app/routes/user')
-const authRouter = require('@app/routes/auth')
-
-app.use('/user', userRouter)
-app.use('/auth', authRouter)
+// const modules = fs.readdirSync(__dirname)
+// modules.forEach(moduleName => {
+//   if (moduleName !== 'index') {
+//     require(`./${moduleName}`)
+//   }
+// })
 
 app.use(routeNotFound())
 app.use(error())
