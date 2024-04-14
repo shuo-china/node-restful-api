@@ -1,12 +1,12 @@
 // mount property
 function extend() {
   const middleware = function (req, res, next) {
-    res.error = (message, code, detail) => {
-      const result = { message }
-
-      if (typeof code !== 'undefined') {
-        result.code = code
-      }
+    res.success = (data, message = '') => {
+      const result = { errorCode: '', message, data }
+      return res.json(result)
+    }
+    res.error = (errorCode, message = '', detail) => {
+      const result = { errorCode, message }
 
       if (typeof detail !== 'undefined') {
         result.detail = detail

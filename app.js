@@ -25,13 +25,6 @@ app.use(extend())
 app.use(auth())
 setupRouter(app)
 
-// const modules = fs.readdirSync(__dirname)
-// modules.forEach(moduleName => {
-//   if (moduleName !== 'index') {
-//     require(`./${moduleName}`)
-//   }
-// })
-
 app.use(routeNotFound())
 app.use(error())
 

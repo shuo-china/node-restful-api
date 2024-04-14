@@ -2,8 +2,8 @@ const mysql = {
   host: 'localhost',
   username: 'root',
   password: 'root',
-  database: 'node',
-  prefix: 'kr'
+  database: 'chatgpt',
+  prefix: ''
 }
 
 module.exports = {

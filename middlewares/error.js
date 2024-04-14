@@ -4,17 +4,17 @@ const { upperFirst, lowerFirst } = require('lodash')
 function error() {
   const middleware = function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
-      res.status(401).error(err.message, 'TOKEN_INVALID')
+      res.status(401).error('TOKEN_INVALID', err.message)
     } else if (err.name === 'RouteNotFoundError') {
-      res.status(404).error('Route does not exist', 'ROUTE_NOT_FOUND')
+      res.status(404).error('ROUTE_NOT_FOUND', 'Route does not exist')
     } else if (err.name === 'ValidateError') {
       const { errors } = err
       const message = `${upperFirst(errors[0].param)} is ${lowerFirst(
         errors[0].msg
       )}`
-      res.status(422).error(message, 'PARAM_ERROR', errors)
+      res.error('PARAM_ERROR', message, errors)
     } else {
-      res.status(500).error(err.message, 'SERVER_ERROR')
+      res.status(500).error('SERVER_ERROR', err.message)
     }
   }
 

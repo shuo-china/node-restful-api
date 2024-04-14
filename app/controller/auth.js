@@ -17,11 +17,11 @@ router.post('/login', loginValidate, async (req, res, next) => {
   const user = await User.findOne({ where, attributes })
 
   if (user === null) {
-    res.status(403).error('username or password incorrect', 'LOGIN_FAIL')
+    res.error('LOGIN_FAIL', '用户名或密码不正确')
     return
   }
 
-  res.status(201).json({
+  res.success({
     token_type: 'Bearer',
     access_token: createToken(user)
   })
